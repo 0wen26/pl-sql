@@ -2,7 +2,7 @@
 DECLARE
 
     --Declaro variable
-    v_deptno number:=80;
+    v_deptno number:=50;
     
     --declaro cursor
     CURSOR c_emp IS
@@ -12,22 +12,17 @@ DECLARE
      where department_id = v_deptno;
     v_cursor c_emp%ROWTYPE;
 begin
-    open c_emp;
 
-    loop
-      fetch c_emp into v_cursor;      
-      exit when c_emp%NOTFOUND;
-      if v_cursor.salary < 5000 and (v_cursor.manager_id =101 or v_cursor.manager_id= 124)  then
-        dbms_output.put_line(v_deptno || ' ' || v_cursor.LAST_NAME || ' Due for a raise');  
+  for emp_record IN c_emp
+  LOOP
+     if emp_record.salary < 5000 and (emp_record.manager_id =101 or emp_record.manager_id= 124)  then
+        dbms_output.put_line(v_deptno || ' ' || emp_record.LAST_NAME || ' Due for a raise');  
         
       else
-        dbms_output.put_line(v_deptno || ' ' || v_cursor.LAST_NAME || ' Not due for a raise');
+        dbms_output.put_line(v_deptno || ' ' || emp_record.LAST_NAME || ' Not due for a raise');
         
       end if;
-      
-    end loop;
-    close c_emp;
-
+  end loop;
 
 END;
 /
