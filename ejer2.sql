@@ -15,25 +15,31 @@ declare
      --Variables
      v_emp departments.department_id%type;
      v_dept departments.department_name%type;
+     v_emp_record c_emp_cursor%rowtype;
 
 begin
+
     open c_dept_cursor;
         LOOP
             fetch c_dept_cursor into v_emp,v_dept;
             exit when c_dept_cursor%notfound;
-            dbms_output.put_line(v_emp);
-
+            dbms_output.put_line('Department number: '|| v_emp ||
+                                 ' Department name: ' || v_dept);
+               if not c_emp_cursor%ISOPEN THEN     
+                  open c_emp_cursor(v_emp);
+               end if;          
+                  LOOP
+                     fetch c_emp_cursor INTO v_emp_record;
+                     exit when c_emp_cursor%notfound;
+                     dbms_output.put_line(v_emp_record.last_name || '     ' ||
+                     v_emp_record.job_id || '   ' || v_emp_record.hire_date
+                     || '    '|| v_emp_record.salary);
+                        
+                  end loop;
+                  dbms_output.put_line('--------------------------------------------------------------------');
+               close c_emp_cursor;
+                
         end loop;
         
     close c_dept_cursor;
-
-    
-
-    open c_emp_cursor(10);
-
-    close c_emp_cursor;
-
-
-
-
 end;
