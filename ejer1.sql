@@ -19,10 +19,10 @@ begin
       exit when c_emp%NOTFOUND;
       if v_cursor.salary < 5000 and (v_cursor.manager_id =101 or v_cursor.manager_id= 124)  then
         dbms_output.put_line(v_deptno || ' ' || v_cursor.LAST_NAME || ' Due for a raise');  
-        dbms_output.put_line(v_cursor.salary );
+        
       else
         dbms_output.put_line(v_deptno || ' ' || v_cursor.LAST_NAME || ' Not due for a raise');
-        dbms_output.put_line(v_cursor.salary );
+        
       end if;
       
     end loop;
