@@ -12,8 +12,8 @@ declare
       from employees
      where department_id = deptno  and employee_id < 120;
      --Variables
-     v_emp c_emp_cursor%rowtype;
-     v_dept c_dept_cursor%rowtype;
+     v_emp employees.department_id%type;
+     v_dept departments.department_id%type;
 
 begin
     open c_dept_cursor;
@@ -21,7 +21,7 @@ begin
         
     close c_dept_cursor;
 
-
+    
 
     open c_emp_cursor(10);
 
