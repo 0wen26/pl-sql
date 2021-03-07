@@ -25,7 +25,7 @@ BEGIN
             v_count:=v_count+1;
       END LOOP;
 
-
+   close c_emp_cursor;
 
 END;
 /
