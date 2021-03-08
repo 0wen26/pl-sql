@@ -1,8 +1,9 @@
 
+
 DECLARE
 
     --Declaro variable
-    v_deptno number:=50;
+    v_deptno number:=20;
     
     --declaro cursor
     CURSOR c_emp IS
@@ -10,7 +11,7 @@ DECLARE
     select LAST_NAME,SALARY,manager_id
       from EMPLOYEES
      where department_id = v_deptno;
-    v_cursor c_emp%ROWTYPE;
+    --v_cursor c_emp%ROWTYPE;
 begin
 
   for emp_record IN c_emp
