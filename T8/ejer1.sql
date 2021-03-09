@@ -1,7 +1,7 @@
-
+/*
 CREATE TABLE messages(
 results VARCHAR2(100));
-
+*/
 --drop table messages;
 
 DECLARE
@@ -11,7 +11,7 @@ DECLARE
       Inicialitza l'última en 6000
    */
    v_ename employees.last_name%type;
-   v_emp_sal employees.salary%type :=6000;
+   v_emp_sal employees.salary%type :=2000;
 
 BEGIN
    /*
@@ -26,7 +26,7 @@ BEGIN
    insert into messages (results)
    values (v_ename||' '||v_emp_sal);
 
-EXCEPTIONS
+EXCEPTION
    /*
       d) Si el salari introduït no torna cap fila, manega l'excepció amb un manegador d'excepcions adequat i
          afegeix en la taula messages el missatge "No employee with a salary of <salary>"
@@ -47,7 +47,7 @@ EXCEPTIONS
       Manega qualsevol altra excepció amb un manegador d'excepcions adequat i afegix en la taula
       messages el missatge "Some other error ocurred
    */
-   when other THEN
+   when others THEN
       insert into messages (results)
       values ('Some other error ocurred');
 
