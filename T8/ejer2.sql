@@ -9,8 +9,8 @@ DECLARE
 
 begin
   /*
-    b) En la secció executable, mostra "Deleting department 40...". Inclou una sentència DELETE per
-        suprimir el departament amb department_id 40.
+    b) En la secció executable, mostra "Deleting department 40...".
+       Inclou una sentència DELETE per suprimir el departament amb department_id 40.
   */
   dbms_output.put_line('Deleting department 40...');
   delete from departments
@@ -19,14 +19,12 @@ begin
 exception
 
     /*
-    c) Inclou una secció d'excepcions per manegar l'excepció e_childrecord_exists i mostra el missatge adequat
+    c) Inclou una secció d'excepcions per manegar l'excepció e_childrecord_exists 
+      i mostra el missatge adequat
     */
   when e_childrecord_exists then
-    dbms_output.put_line('Cannot delete this department. There are employees in this department(child records exist)');
-
-
-
-
+    dbms_output.put_line('Cannot delete this department. There are employees in this
+                          department(child records exist)');
 end;
 /
 select * from departments;

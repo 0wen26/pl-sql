@@ -23,8 +23,9 @@ BEGIN
    SELECT last_name,salary into v_ename,v_emp_sal
    from employees
    where salary = v_emp_sal;
+
    insert into messages (results)
-   values (v_ename||' '||v_emp_sal);
+   values (v_ename || ' - ' || v_emp_sal);
 
 EXCEPTION
    /*
