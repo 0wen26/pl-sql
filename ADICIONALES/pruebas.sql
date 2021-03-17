@@ -18,10 +18,12 @@ begin
     
         loop
         fetch c_emp_cursor into emp_record;
-        IF c_emp_cursor%notfound THEN
+        IF emp_record.job_id IS  NULL THEN
             RAISE e_insert_excep;
+        ELSE
+            exit when c_emp_cursor%notfound;
         end if;
-       -- exit when c_emp_cursor%notfound;
+       
             if emp_record.job_id = 'AD_ASST' OR emp_record.job_id ='SA_REP' 
                 OR emp_record.job_id = 'SH_CLERK' OR emp_record.job_id = 'PU_CLERK'
                 OR emp_record.job_id = 'ST_CLERK' then
@@ -56,7 +58,7 @@ begin
        -- return v_total_sal_dept;
     exception
       when  e_insert_excep then
-        RAISE_APPLICATION_ERROR (-20215,'ESTO ES UN DESASTRE');
-        --dbms_output.put_line('Erfdafdasfdasfdsafdsafdsaror');
+        --RAISE_APPLICATION_ERROR (-20215,'ESTO ES UN DESASTRE');
+        dbms_output.put_line('Erfdafdasfdasfdsafdsafdsaror');
 
 end;
