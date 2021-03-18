@@ -19,39 +19,33 @@ Total_Salaris NUMBER(8,2));
     dep 50 125600
 */
 
-CREATE or replace FUNCTION total_salari_dept (p_deptno number) RETURN number IS
-    v_total_sal_dept number :=0;
-    v_job employees.job_id%type;
-    v_sal number:=0;
+CREATE or replace FUNCTION total_salari_dept (p_deptno departments.department_id%type) RETURN number IS
 CURSOR c_emp_cursor IS
     select job_id,salary
     from employees
     where department_id = p_deptno;
+v_total_sal_dept number(8,2) :=0;
+v_sal number:=0;
 
 begin
      FOR emp_record IN c_emp_cursor
     loop
-        if emp_record.job_id = 'AD_ASST' OR emp_record.job_id ='SA_REP' 
-            OR emp_record.job_id = 'SH_CLERK' OR emp_record.job_id = 'PU_CLERK'
-            OR emp_record.job_id = 'ST_CLERK' then
+        if emp_record.job_id IN ('AD_ASST','SA_REP','SH_CLERK','PU_CLERK','ST_CLERK') then
+
             v_sal := emp_record.SALARY*0.03+emp_record.salary;
             v_total_sal_dept:=v_sal +v_total_sal_dept;
 
-        elsif emp_record.job_id = 'AC_ACCOUNT' OR emp_record.job_id ='FI_ACCOUNT' 
-            OR emp_record.job_id = 'HR_REP' OR emp_record.job_id = 'PR_REP'
-            OR emp_record.job_id = 'IT_PROG' OR emp_record.job_id = 'MK_REP' then
+        elsif emp_record.job_id IN('AC_ACCOUNT','FI_ACCOUNT','HR_REP','PR_REP','IT_PROG','MK_REP') then
             
             v_sal := emp_record.SALARY*0.03+emp_record.salary;
             v_total_sal_dept:=(v_total_sal_dept*0.05)+v_total_sal_dept;
         
-        elsif emp_record.job_id = 'MK_MAN' OR emp_record.job_id ='AC_MGR' 
-            OR emp_record.job_id = 'FI_MGR' OR emp_record.job_id = 'PU_MAN'
-            OR emp_record.job_id = 'SA_MAN' OR emp_record.job_id = 'ST_MANAGER' then
+        elsif emp_record.job_id IN('MK_MAN','AC_MGR','FI_MGR','PU_MAN','SA_MAN','ST_MANAGER') then
             
             v_sal := emp_record.SALARY*0.03+emp_record.salary;
             v_total_sal_dept:=(v_total_sal_dept*0.07)+v_total_sal_dept;
         
-        elsif emp_record.job_id = 'AD_PRES' OR emp_record.job_id ='AD_VP' then
+        elsif emp_record.job_id IN('AD_PRES','AD_VP') then
 
             v_sal := emp_record.SALARY*0.03+emp_record.salary;
             v_total_sal_dept:=(v_total_sal_dept*0.09)+v_total_sal_dept;
