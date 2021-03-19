@@ -16,19 +16,18 @@ CURSOR c_emp_cursor IS
     from employees
     where department_id = p_deptno;
     emp_record c_emp_cursor%rowtype;
-e_insert_excep EXCEPTION;
+
 
 
 begin
     open c_emp_cursor; 
-    
-        loop
         fetch c_emp_cursor into emp_record;
-        IF emp_record.job_id IS  NULL THEN
-            RAISE e_insert_excep;
-        ELSE
-            exit when c_emp_cursor%notfound;
+        IF c_emp_cursor%notfound THEN
+            RAISE_APPLICATION_ERROR(-20215, 'No existeix aquest departament!!' || p_deptno);
         end if;
+        loop
+            
+        
             if emp_record.job_id = 'AD_ASST' OR emp_record.job_id ='SA_REP' 
                 OR emp_record.job_id = 'SH_CLERK' OR emp_record.job_id = 'PU_CLERK'
                 OR emp_record.job_id = 'ST_CLERK' then
@@ -55,13 +54,19 @@ begin
                 v_total_sal_dept:=(v_total_sal_dept*0.09)+v_total_sal_dept;
 
             end if;
+        fetch c_emp_cursor into emp_record;
+        exit when c_emp_cursor%notfound;
         end loop;
 
     close c_emp_cursor;
 
         return v_total_sal_dept;
+<<<<<<< HEAD
     exception
       when  e_insert_excep then
        dbms_output.put_line('-20215 No existeix aquest departament!!');
+=======
+   
+>>>>>>> 9b70c6338d78860149fdb689db0c694e2c7c62bf
 
 end;
