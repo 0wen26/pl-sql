@@ -5,6 +5,7 @@ set serveroutput on;
 */
 
 BEGIN
-    dbms_output.put_line(total_salari_dept(50));
+    dbms_output.put_line(total_salari_dept2(5));
     
+    --dbms_output.put_line(total_salari_dept2(5));
 end;

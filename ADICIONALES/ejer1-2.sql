@@ -62,6 +62,6 @@ begin
         return v_total_sal_dept;
     exception
       when  e_insert_excep then
-        dbms_output.put_line('-20215 No existeix aquest departament!!');
+       dbms_output.put_line('-20215 No existeix aquest departament!!');
 
 end;
