@@ -1,5 +1,5 @@
 /*
-     Fes un bloc PL/SQL per omplir una taula de registres indexada per VARCHAR2,
+   a)  Fes un bloc PL/SQL per omplir una taula de registres indexada per VARCHAR2,
      que crei una taula indexada per job_id i crea un cursor que recuperi tots els empleats ordenats
       per departament i recorre'l per omplir la taula amb la següent informació: 
      número d'empleats que tenen aquest ofici i el número de departaments que tenen aquest ofici.
@@ -9,6 +9,8 @@
       tenen aquest ofici i quants empleats tenen aquest ofici. La taula estarà indexada per VARCHAR2 (job_id). 
       Declara també les variables respectives.
 */
+
+
 set serveroutput on;
 Declare
 
@@ -35,6 +37,14 @@ Declare
         select job_id,job_title
         from JOBS;
     v_job_id jobs.job_id%type;
+/*
+c) Utilitzant un cursor que recuperi tots els departaments amb els seus
+ oficis i el número de treballadors que fan cada ofici, i actualitza
+  la taula convenientment. Mostra el resultat.
+*/
+    cursor c_ofice_cursor IS
+        SELECT DEPARTMENT_ID,
+
     
 begin
   for v_job_record in c_job_cursor  loop
