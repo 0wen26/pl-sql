@@ -25,7 +25,7 @@ CURSOR c_emp_cursor IS
     from employees
     where department_id = p_deptno;
 v_total_sal_dept number(8,2) :=0;
-v_sal number:=0;
+v_sal number(8,2):=0;
 
 begin
      FOR emp_record IN c_emp_cursor

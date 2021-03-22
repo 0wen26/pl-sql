@@ -29,4 +29,9 @@ COMMIT;
 end;
 /
 --drop table pressupost;
---dropselect * from pressupost;
+select * from pressupost;
+/*
+CREATE TABLE PRESSUPOST(
+Nom_Department VARCHAR2(30) PRIMARY KEY, 
+Total_Salaris NUMBER(8,2));
+*/
