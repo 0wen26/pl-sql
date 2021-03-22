@@ -25,3 +25,4 @@ p_total_salaris pressupost2.total_salaris%type) IS
     VALUES (p_dept_name, v_first_name, v_last_name, p_total_salaris);
 
     end;
+    --http://wikiserver.infomerce.es/index.php/M2_-_Bases_de_dades_/_Solucions_exercicis_conceptes_fundamentals_UF3:_PL-SQL
